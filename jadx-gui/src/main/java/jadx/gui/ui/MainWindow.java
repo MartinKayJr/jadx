@@ -72,6 +72,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import jadx.gui.plugins.apktool.ApkToolDialog;
 import org.fife.ui.rsyntaxtextarea.Theme;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -160,6 +161,7 @@ public class MainWindow extends JFrame {
 	private static final ImageIcon ICON_BACK = UiUtils.openSvgIcon("ui/left");
 	private static final ImageIcon ICON_FORWARD = UiUtils.openSvgIcon("ui/right");
 	private static final ImageIcon ICON_QUARK = UiUtils.openSvgIcon("ui/quark");
+	private static final ImageIcon ICON_APKTOOL = UiUtils.openSvgIcon("ui/apktool");
 	private static final ImageIcon ICON_PREF = UiUtils.openSvgIcon("ui/settings");
 	private static final ImageIcon ICON_DEOBF = UiUtils.openSvgIcon("ui/helmChartLock");
 	private static final ImageIcon ICON_LOG = UiUtils.openSvgIcon("ui/logVerbose");
@@ -958,6 +960,14 @@ public class MainWindow extends JFrame {
 		};
 		quarkAction.putValue(Action.SHORT_DESCRIPTION, "Quark Engine");
 
+		Action apktoolAction = new AbstractAction("ApkTool", ICON_APKTOOL) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ApkToolDialog(MainWindow.this).setVisible(true);
+			}
+		};
+		apktoolAction.putValue(Action.SHORT_DESCRIPTION, "ApkTool");
+
 		Action openDeviceAction = new AbstractAction(NLS.str("debugger.process_selector"), ICON_DEBUGGER) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1003,6 +1013,7 @@ public class MainWindow extends JFrame {
 
 		JMenu tools = new JMenu(NLS.str("menu.tools"));
 		tools.setMnemonic(KeyEvent.VK_T);
+		tools.add(apktoolAction);
 		tools.add(deobfMenuItem);
 		tools.add(quarkAction);
 		tools.add(openDeviceAction);
@@ -1048,6 +1059,7 @@ public class MainWindow extends JFrame {
 		toolbar.add(backAction);
 		toolbar.add(forwardAction);
 		toolbar.addSeparator();
+		toolbar.add(apktoolAction);
 		toolbar.add(deobfToggleBtn);
 		toolbar.add(quarkAction);
 		toolbar.add(openDeviceAction);

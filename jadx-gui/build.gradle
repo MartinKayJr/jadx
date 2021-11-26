@@ -6,6 +6,8 @@ plugins {
 }
 
 dependencies {
+
+	implementation 'org.projectlombok:lombok:1.18.20'
 	implementation(project(':jadx-core'))
 
 	implementation(project(":jadx-cli"))
@@ -29,6 +31,8 @@ dependencies {
 	implementation "com.github.akarnokd:rxjava2-swing:0.3.7"
 	implementation 'com.android.tools.build:apksig:4.2.1'
 	implementation 'io.github.hqktech:jdwp:1.0'
+
+	implementation 'com.squareup.okhttp3:okhttp:4.9.2'
 }
 
 application {
